@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Оффлайн интернет-магазин на React (без Redux)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Summary 
 
-## Available Scripts
+Разработка приложения на React – это часто попытка красиво отобразить содержимое [глобального стейта](https://studme.org/379221/informatika/globalnoe_sostoyanie). 
 
-In the project directory, you can run:
+В качестве глобального стейта (глобального состояния) обычно выступает JavaScript-объект, т.к. он позволяет хранить много разнотипных значений.
 
-### `yarn start`
+Компоненты приложения обращаются к глобальному стейту, забирая из него необходимые данные для дальнейшей отрисовки. Некоторые компоненты обращаются к стейту для того, чтобы его как-то изменить. **Когда компонент изменяет глобальный стейт очень важно следить за тем, чтобы он изменил только его определенную нужную часть, а не весь объект стейта.**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+В данном челлендже тебе придется на практике столкнуться со всеми нюансами работы с глобальным стейтом. Также нужно будет разобраться со "сложными" компонентами, которые взаимодействуют с глобальным стейтом, с родительским компонентом, а также отрисовывают свои дочерние компоненты.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+После выполнения челленджа у тебя должно получиться следующее приложение: [react-shopcamp.herokuapp.com](https://react-shopcamp.herokuapp.com/). Дизайн твоего проекта может отличаться от демонстрационного, однако следи за тем, чтобы не было "съехавших" блоков и других интерфейсных ошибок.
 
-### `yarn test`
+### Техническое задание
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+– При клике на название сайта в шапке профиля должны выводиться все продукты.
 
-### `yarn build`
+– При клике на название категории в сайдбаре выводятся только продукты из этой категории (должно быть реализовано на роутах, в проекте есть заготовка).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+– Если товара нет на складе (`left = 0`), то кнопка добавления не активна (`disabled={true}`).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+– После добавления товара в корзину кнопка также не активна.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+– Над иконкой корзины количество товаров в ней. Если товаров нет, то бейдж не должен отображаться.
 
-### `yarn eject`
+– При клике на иконку корзины всплывает окно с содержимым корзины. Если корзина пуста, то выводится соответствующее сообщение.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+– Список товаров должен содержать порядоковый номер, фотографию, название и остаток товара на складе за вычетом количества, которое уже добавлено в корзину.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+– При открытии корзины в строке товаров должна быть возможность увеличить или уменьшить количество товара.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+– При уменьшении количества товаров минимальное значение должно быть равно единице.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+– При увеличении количества товаров максимальное значение должно быть равно остатку товара на складе (значение `left`)
 
-## Learn More
+– Должна быть возможность удаления товара из корзины.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![](./demo.gif)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Releases
 
-### Code Splitting
+В этом челлендже нет строго фиксированных релизов. Можешь начинать с той части приложения, где тебе удобнее.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Важные темы, которые помогут тебе быстрее разобраться с проектом
 
-### Analyzing the Bundle Size
+#### dispatch – action – reducer 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Хорошо разберись с этой связкой. Любое изменение в глобальном стейте делается через вызов `dispatch`. В `dispatch` передается `action` со свойством `type`. Затем вызывается `reducer`, который должен вернуть **новый измененный глобальный стейт**. Никаких других способов изменения стейта нет.
 
-### Making a Progressive Web App
+#### position
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Для позиционирования блока корзины тебе понадобится CSS-свойство `position` и другие свойства, которые используются вместе с ним. Удели полчаса на разбор этих свойств отдельно от приложения.
 
-### Advanced Configuration
+#### find, filter, map
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Методы обхода массива нужны в проекте повсеместно. Вкратце запомни:
 
-### Deployment
+`filter` – если что-то нужно удалить  
+`map` – если нужно изменить что-то внутри массива  
+`find` – если нужно найти один элемент массива по определенному условию.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### spread
 
-### `yarn build` fails to minify
+Оператор распространения `...` часто нужен когда в массив или объект добавляется что-то новое не удаляя старое. К примеру тебе нужно будет добавлять товары в массив корзины😉.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

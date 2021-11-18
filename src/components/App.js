@@ -1,6 +1,4 @@
-import React, { useReducer } from "react";
-import { ShopContext } from "../context/ShopContext";
-import reducer, { initialState } from "../redux/reducer";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Products from "./Products";

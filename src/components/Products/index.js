@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { ShopContext } from "../../context/ShopContext";
 import styles from "./products.module.css";
 import Product from "./Product";
 import { useSelector } from 'react-redux';

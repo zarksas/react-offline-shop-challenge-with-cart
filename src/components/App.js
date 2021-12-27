@@ -1,6 +1,4 @@
-import React, { useReducer } from "react";
-import { ShopContext } from "../context/ShopContext";
-import reducer, { initialState } from "../reducer";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Products from "./Products";
@@ -8,10 +6,7 @@ import Delivery from "./Delivery";
 import Header from "./Header";
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
   return (
-    <ShopContext.Provider value={{ state, dispatch }}>
       <div className="container">
         {/*Хидер отдельно вне роутов потому что он всегда виден*/}
         <Header />
@@ -35,7 +30,6 @@ function App() {
           </div>
         </div>
       </div>
-    </ShopContext.Provider>
   );
 }
 

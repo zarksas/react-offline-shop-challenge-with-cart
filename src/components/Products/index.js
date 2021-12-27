@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { ShopContext } from "../../context/ShopContext";
 import styles from "./products.module.css";
 import Product from "./Product";
+import { useSelector } from 'react-redux';
 
 function Products() {
   const { categoryId } = useParams();
 
-  const { state } = useContext(ShopContext);
+  const products = useSelector((state) => state.products);
 
-  const products = state.products.filter((product) => {
+  const filteredProducts = products.filter((product) => {
     if (!categoryId) return true;
 
     return product.categoryId === Number(categoryId);
@@ -17,7 +17,7 @@ function Products() {
 
   return (
     <div className={styles.products}>
-      {products.map((product) => {
+      {filteredProducts.map((product) => {
         return <Product key={product.id} product={product} />;
       })}
     </div>

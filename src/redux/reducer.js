@@ -1,4 +1,4 @@
-export const initialState = {
+const initialState = {
   products: [
     {
       id: 1,
@@ -102,7 +102,7 @@ export const initialState = {
   ],
 };
 
-const shopReducer = (state, action) => {
+export const shopReducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;

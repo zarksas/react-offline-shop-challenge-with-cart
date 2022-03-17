@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./products.module.css";
 import Product from "./Product";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 function Products() {
   const { categoryId } = useParams();
